@@ -1,0 +1,26 @@
+//
+// Configuration
+//
+$breakpoints: (
+    phone: 'min-width: 320px',
+    large-phone: 'min-width: 481px',
+    tablet: 'min-width: 768px',
+    desktop: 'min-width: 1024px',
+);
+
+$button-color-default: #666;
+$button-color-success: #31ac5f;
+
+$link-hover-color: #0181B9;
+
+$site-background-color: #FFF;
+$site-alternate-background-color: #FBFBFB;
+$site-font-color: #333;
+$site-max-width: 1200px;
+
+//
+// Mixins
+//
+@import './mixins/utilities';
+@import './mixins/bp';
+@import './mixins/transition';

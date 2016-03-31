@@ -1,0 +1,61 @@
+/**
+ * Implode a list
+ */
+@function implode($list, $glue: '', $is-nested: false) {
+    $result: null;
+    @for $i from 1 through length($list) {
+        $e: nth($list, $i);
+        @if type-of($e) == list {
+            $result: $result#{to-string($e, $glue, true)};
+        } @else {
+            $result: if($i != length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+        }
+    }
+    @return $result;
+}
+
+/**
+ * Explode a list
+ */
+@function explode($string, $delimiter: '', $separator: "space") {
+    @if type-of($string) != "string" {
+        @warn "`sl-explode` function expecting a string; #{type-of($string)} given.";
+        @return null;
+    }
+
+    @if type-of($delimiter) != "string" {
+        @warn "`sl-explode` function expecting a string; #{type-of($delimiter)} given.";
+        @return null;
+    }
+
+    $result: ();
+    $length: str-length($string);
+    @if not index("space" "comma", $separator) {
+        $separator: "space";
+    }
+
+    @if str-length($delimiter) == 0 {
+        @for $i from 1 through $length {
+            $result: append($result, str-slice($string, $i, $i));
+        }
+
+        @return $result;
+    }
+
+    $running: true;
+    $remaining: $string;
+    @while $running {
+        $index: str-index($remaining, $delimiter);
+        @if not $index {
+            $running: false;
+        }
+
+        @else {
+            $slice: str-slice($remaining, 1, $index - 1);
+            $result: append($result, $slice, $separator);
+            $remaining: str-slice($remaining, $index + str-length($delimiter));
+        }
+    }
+
+    @return append($result, $remaining, $separator);
+}
