@@ -11,16 +11,19 @@ $breakpoints: (
 $button-color-default: #666;
 $button-color-success: #31ac5f;
 
-$link-hover-color: #0181B9;
+$error-color: #F44336;
+
+$link-hover-color: #222;
 
 $site-background-color: #FFF;
 $site-alternate-background-color: #FBFBFB;
 $site-font-color: #333;
-$site-max-width: 1200px;
+$site-max-width: 1366px;
 
 //
 // Mixins
 //
 @import './mixins/utilities';
 @import './mixins/bp';
+@import './mixins/placeholder';
 @import './mixins/transition';

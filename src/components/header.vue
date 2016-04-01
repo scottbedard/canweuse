@@ -1,6 +1,10 @@
 <style lang="sass" scoped>@import 'core';
      header {
+        align-items: center;
         display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #dfdfdf;
+        @include bp-prop(height, 65px, 80px, 120px);
 
         //
         // Logo
@@ -13,25 +17,22 @@
 </style>
 
 <template>
-    <header>
+    <header class="margin">
         <a v-link="{ name: 'home' }">can we use</a>
-        <div v-if="user.isAuthenticated">Is authenticated</div>
-        <div v-else>Not authed</div>
+        <v-nav class="v-nav"></v-nav>
     </header>
 </template>
 
 <script>
-    import User from 'state/user';
+    import NavComponent from './nav';
 
     module.exports = {
 
         /**
-         * @return {Object}
+         * @type {Object}
          */
-        data() {
-            return {
-                user: User.state,
-            };
+        components: {
+            'v-nav': NavComponent,
         },
     };
 </script>

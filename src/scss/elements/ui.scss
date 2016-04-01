@@ -1,7 +1,7 @@
 //
-// User interfaces
+// Links
 //
-a {
+a:not(.btn) {
     color: $site-font-color;
     text-decoration: none;
     @include transition(color);
@@ -12,6 +12,40 @@ a {
     }
 }
 
+//
+// Inputs
+//
+input[type=text],
+input[type=email],
+input[type=password] {
+    appearance: none;
+    border: 0;
+    border-bottom: 1px solid #999;
+    border-radius: 0;
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 24px;
+    outline: none;
+    padding: 6px 0;
+    width: 100%;
+
+    &:focus { border-color: #666 }
+
+    @mixin placeholder() { color: #999 }
+    &::-webkit-input-placeholder { @include placeholder() }
+    &:-moz-placeholder { @include placeholder() }
+    &::-moz-placeholder { @include placeholder() }
+    &:-ms-input-placeholder { @include placeholder() }
+
+    &.is-invalid {
+        border-color: $error-color;
+        @mixin error-placeholder() { color: $error-color }
+        &::-webkit-input-placeholder { @include error-placeholder() }
+        &:-moz-placeholder { @include error-placeholder() }
+        &::-moz-placeholder { @include error-placeholder() }
+        &:-ms-input-placeholder { @include error-placeholder() }
+    }
+}
 
 //
 // Buttons
@@ -25,13 +59,16 @@ button {
     cursor: pointer;
     display: inline-block;
     min-width: 225px;
+    outline: none;
     padding: 12px 32px;
     text-align: center;
+    text-decoration: none;
     @include transition('background-color, border-color, color');
 
     &:hover {
         border-color: darken($button-color-default, 50%);
         color: darken($button-color-default, 50%);
+        text-decoration: none;
     }
 
     // Success buttons

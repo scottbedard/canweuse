@@ -37,3 +37,16 @@ html, body {
         flex-shrink: 0;
     }
 }
+
+//
+// Margins and padding
+//
+.margin {
+    margin: 0 auto;
+    max-width: $site-max-width;
+    width: 100%;
+}
+
+.padding { padding: 12px }
+.h-padding { padding: 0 12px }
+.v-padding { padding: 12px 0 }

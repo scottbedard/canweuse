@@ -21,7 +21,7 @@ module.exports = {
             return;
         }
 
-        Vue.resource('/api/auth').get().then(response => {
+        Vue.resource('/api/canweuse/auth').get().then(response => {
             if (response.data) {
                 this.setUser(response.data);
             }

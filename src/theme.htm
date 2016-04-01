@@ -1,7 +1,13 @@
-<!-- htmlmin:ignore -->title = "Index"
+<!-- htmlmin:ignore -->
+title = "Can we use"
 url = "/:all?*"
-description = "Do not modify"
 is_hidden = 0
+==
+<?php
+function onStart() {
+    $this['csrfToken'] = csrf_token();
+}
+?>
 ==
 <!-- htmlmin:ignore -->
 <!doctype html>
@@ -9,7 +15,9 @@ is_hidden = 0
     <head>
         <meta charset="utf-8">
         <title>Can we use</title>
-        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+        <meta name="viewport"content="width=device-width,initial-scale=1">
+        <meta name="csrf-token" content="{{ csrfToken }}">
     </head>
     <body>
         <div id="app"></div>

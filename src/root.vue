@@ -14,7 +14,6 @@
 </template>
 
 <script>
-    import User from 'state/user';
     import HeaderComponent from 'components/header';
     import FooterComponent from 'components/footer';
 
@@ -26,15 +25,6 @@
         components: {
             'v-header': HeaderComponent,
             'v-footer': FooterComponent,
-        },
-
-        /**
-         * Initialize the user's state
-         *
-         * @return {void}
-         */
-        created() {
-            User.init();
         },
     };
 </script>

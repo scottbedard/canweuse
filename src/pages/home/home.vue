@@ -10,7 +10,8 @@
         @include transition(padding);
 
         h1 {
-            font-size: 52px;
+            @include bp-prop(font-size, 48px, 52px);
+            @include transition(font-size);
         }
 
         p {
@@ -31,13 +32,13 @@
 </style>
 
 <template>
-    <main>
+    <main class="margin padding">
         <section class="welcome">
             <h1>Cross browser development just got easier.</h1>
             <p>Explore <a href="http://caniuse.com">Caniuse</a> through the lens of <a href="https://www.google.com/analytics/">Google Analytics</a></p>
             <div class="auth-buttons">
                 <a class="btn success">Sign in with GitHub</a>
-                <a class="btn">Create an account</a>
+                <a v-link="{ name: 'signup' }" class="btn">Create an account</a>
             </div>
         </section>
     </main>

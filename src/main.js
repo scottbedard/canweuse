@@ -1,5 +1,5 @@
 //
-// On your mark
+// Boot up our application
 //
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -9,10 +9,13 @@ import { config, before, after } from 'app/router';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+Vue.http.options.emulateJSON = true;
+
 require('app/boot');
 
 //
-// Get set
+// Configure the router
 //
 let Router = new VueRouter(config);
 Router.map(routes);
