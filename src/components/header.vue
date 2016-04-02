@@ -1,9 +1,9 @@
 <style lang="sass" scoped>@import 'core';
      header {
         align-items: center;
+        border-bottom: 1px solid #dfdfdf;
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid #dfdfdf;
         @include bp-prop(height, 65px, 80px, 120px);
 
         //

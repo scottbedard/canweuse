@@ -12,4 +12,27 @@ main.content {
         font-weight: 300;
         padding: 24px 0;
     }
+
+    //
+    // Splash pages
+    //
+    &.splash, .splash {
+        overflow: hidden;
+        text-align: center;
+        @include bp-prop(padding, 24px 0, 60px 0, 120px 0);
+        @include transition(padding);
+
+        h1 {
+            @include bp-prop(font-size, 48px, 52px !important);
+            @include transition(font-size);
+        }
+
+        p {
+            font-size: 24px;
+            font-weight: 300;
+            @include bp-prop(margin, 36px, 48px, 60px);
+            @include transition(margin);
+            a { font-weight: 400 }
+        }
+    }
 }

@@ -17,6 +17,7 @@
             margin-bottom: 24px;
             text-align: left;
             @include transition(height);
+            &.form-error { text-align: center }
             &:not(:empty) { height: 24px }
         }
     }
@@ -27,11 +28,12 @@
         <form @submit.prevent="onFormSubmitted">
             <header>Create an account, it's free.</header>
 
+            <div v-el:form-error class="error-message form-error">{{ formError }}</div>
+
             <!-- Name -->
             <input
                 v-el:name
                 v-model="name"
-                @blur="validateName"
                 :class="{ 'is-invalid': nameError.length > 0 }"
                 type="text"
                 placeholder="Name"
@@ -42,7 +44,6 @@
             <input
                 v-el:email
                 v-model="email"
-                @blur="validateEmail"
                 :class="{ 'is-invalid': emailError.length > 0 }"
                 type="email"
                 placeholder="Email address"
@@ -51,11 +52,10 @@
 
             <!-- Password -->
             <input
-                type="password"
                 v-el:password
                 v-model="password"
-                @blur="validatePassword"
                 :class="{ 'is-invalid': passwordError.length > 0 }"
+                type="password"
                 placeholder="Password"
             />
             <div v-el:password-error class="error-message">{{ passwordError }}</div>
@@ -64,7 +64,6 @@
             <input
                 v-el:password-confirmation
                 v-model="passwordConfirmation"
-                @blur="validatePasswordConfirmation"
                 :class="{ 'is-invalid': passwordConfirmationError.length > 0 }"
                 type="password"
                 placeholder="Confirm your password"
@@ -78,6 +77,7 @@
 </template>
 
 <script>
+    import UserState from 'state/user';
     import UserResources from 'resources/user';
 
     module.exports = {
@@ -87,13 +87,14 @@
          */
         data() {
             return {
-                name: '',
+                formError: '',
+                name: 'Scott',
                 nameError: '',
-                email: '',
+                email: 'foo@bar.com',
                 emailError: '',
-                password: '',
+                password: 'aaaa',
                 passwordError: '',
-                passwordConfirmation: '',
+                passwordConfirmation: 'aaaa',
                 passwordConfirmationError: '',
                 submitIsReady: false,
             };
@@ -124,7 +125,9 @@
                 if (!this.validatePassword()) return this.$els.password.focus();
                 if (!this.validatePasswordConfirmation()) return this.$els.passwordConfirmation.focus();
 
-                UserResources.create(this.$data);
+                UserResources.create(this.$data)
+                    .then(user => UserState.set(user.data))
+                    .catch(error => this.formError = error.data);
             },
 
             /**
@@ -155,6 +158,11 @@
             validatePassword() {
                 if (this.password.length < 1) {
                     this.passwordError = 'Your account needs a password.';
+                    return false;
+                }
+
+                if (this.password.length < 4) {
+                    this.passwordError = 'Your password can be 4 to 255 characters long.';
                     return false;
                 }
 

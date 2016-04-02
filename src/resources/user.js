@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import UserState from 'state/user';
 
 module.exports = {
 
@@ -27,5 +28,16 @@ module.exports = {
      */
     create({ name, email, password, passwordConfirmation }) {
         return Vue.http.post(this.url, { name, email, password, passwordConfirmation });
+    },
+
+    /**
+     * Log the user out
+     *
+     * @return {Promise}
+     */
+    logout() {
+        return Vue.http.get('api/canweuse/auth/logout').then(response => {
+            console.log (response);
+        });
     },
 };
