@@ -1,3 +1,5 @@
+import UserState from 'state/user';
+
 //
 // Config
 //
@@ -25,6 +27,10 @@ module.exports = {
      * @return {void}
      */
     before({ from, to, next, abort, redirect }) {
+        if (to.auth === false || to.auth === true) {
+            return UserState.isAuthenticated() === to.auth;
+        }
+
         next();
     },
 

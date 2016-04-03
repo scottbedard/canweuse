@@ -28,6 +28,8 @@
 </template>
 
 <script>
+    import UserState from 'state/user';
+
     module.exports = {
 
         /**
@@ -38,6 +40,27 @@
                 githubBtnText: 'Sign in with GitHub',
                 githubIsLoading: false,
             };
+        },
+
+        /**
+         * @type {Object}
+         */
+        route: {
+
+            /**
+             * Activate
+             *
+             * @param  {Function} options.next
+             * @param  {Function} options.redirect
+             * @return {void}
+             */
+            activate({ next, redirect }) {
+                if (UserState.isAuthenticated()) {
+                    redirect({ name: 'projects-create' });
+                }
+
+                next();
+            },
         },
 
         /**

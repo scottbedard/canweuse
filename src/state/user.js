@@ -24,13 +24,20 @@ module.exports = {
      * @return {void}
      */
     init() {
-        Vue.resource('/api/canweuse/auth').get().then(response => {
+        return Vue.resource('/api/canweuse/auth').get().then(response => {
             if (response.data) {
                 this.set(response.data);
             }
-
-            this.state.isInitialized = true;
         });
+    },
+
+    /**
+     * Determine if the user is logged in
+     *
+     * @return {Boolean}
+     */
+    isAuthenticated() {
+        return this.state.isAuthenticated;
     },
 
     /**

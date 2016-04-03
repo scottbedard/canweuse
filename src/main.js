@@ -24,7 +24,8 @@ Router.beforeEach(before);
 Router.afterEach(after);
 
 //
-// Go!
+// Initialize the user's state, then start the app
 //
 import Root from './root';
-Router.start(Root, '#app');
+import UserState from 'state/user';
+UserState.init().then(() => Router.start(Root, '#app'));

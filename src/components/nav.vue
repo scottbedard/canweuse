@@ -1,14 +1,17 @@
 <style lang="sass" scoped>
-
+    a {
+        align-items: center;
+        display: flex;
+        i { padding-left: 6px }
+    }
 </style>
 
 <template>
     <nav>
-        <a v-link="{ name: 'signup' }" v-if="! UserState.isAuthenticated">Create an account</a>
-        <ul v-else>
-            <a href="#">{{ UserState.user.name }}</a>
-            <a href="/logout">Log out</a>
-        </ul>
+        <a href="/logout" v-if="UserState.isAuthenticated">
+            <span>{{ UserState.user.name }}</span>
+            <i class="fa fa-chevron-down"></i>
+        </a>
     </nav>
 </template>
 
