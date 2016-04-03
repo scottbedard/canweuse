@@ -64,7 +64,7 @@
         </div>
         <div class="router-view">
             <router-view
-                :project-name.sync="projectName"
+                :name.sync="name"
                 :client-id.sync="clientId"
                 :view-id.sync="viewId"
                 :email.sync="email"
@@ -94,13 +94,13 @@
             // synchronized props. This will allow the user to refer back to
             // the project guide without accidentally clearing their form.
             return {
-                projectName: 'a',
-                clientId: 'a',
-                email: 'a@b.com',
-                viewId: 'a',
+                name: '',
+                clientId: '',
+                email: '',
+                viewId: '',
                 trackingId: '',
                 domain: '',
-                privateKey: 'a',
+                privateKey: '',
                 fileName: '',
             };
         },

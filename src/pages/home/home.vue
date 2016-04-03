@@ -13,13 +13,11 @@
             <p>Explore <a href="http://caniuse.com">Caniuse</a> through the lens of <a href="https://www.google.com/analytics/">Google Analytics</a></p>
             <div class="auth-buttons">
                 <a href="/oauth/github" @click="oauth('github')" class="btn success">
-                    <span class="icon">
-                        <i class="fa" :class="{
-                            'fa-refresh': githubIsLoading,
-                            'fa-spin': githubIsLoading,
-                            'fa-github': !githubIsLoading,
-                        }"></i>
-                    </span>
+                    <i class="fa" :class="{
+                        'fa-github': !githubIsLoading,
+                        'fa-refresh': githubIsLoading,
+                        'fa-spin': githubIsLoading,
+                    }"></i>
                     <span>{{ githubBtnText }}</span>
                 </a>
             </div>
@@ -56,7 +54,7 @@
              */
             activate({ next, redirect }) {
                 if (UserState.isAuthenticated()) {
-                    redirect({ name: 'projects-create' });
+                    redirect({ name: 'projects-list' });
                 }
 
                 next();

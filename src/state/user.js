@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import UserResource from 'resources/user';
+import ProjectsState from 'state/projects';
 
 module.exports = {
 
@@ -27,6 +28,7 @@ module.exports = {
         return Vue.resource('/api/canweuse/auth').get().then(response => {
             if (response.data) {
                 this.set(response.data);
+                ProjectsState.set(response.data.projects);
             }
         });
     },

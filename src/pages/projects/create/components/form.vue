@@ -1,9 +1,9 @@
 <template>
-    <form @submit.prevent="onFormSubmitted">
+    <form @submit.prevent="onFormSubmitted" novalidate>
         <div class="row">
             <div class="half field first">
-                <label for="project-name">Google API Project Name</label>
-                <input id="project-name" type="text" v-model="projectName" v-el:first required>
+                <label for="name">Google API Project Name</label>
+                <input id="name" type="text" v-model="name" v-el:first required>
             </div>
             <div class="half field">
                 <label for="client-id">Google API Client ID</label>
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+    import Flash from 'state/flash_messages';
     import ProjectResource from 'resources/project';
     import FileUploadComponent from 'components/ui/file_upload';
 
@@ -55,14 +56,13 @@
         /**
          * @type {Array}
          */
-        props: ['projectName', 'clientId', 'email', 'viewId', 'fileName', 'privateKey'],
+        props: ['name', 'clientId', 'email', 'viewId', 'fileName', 'privateKey'],
 
         /**
          * @return {Object}
          */
         data() {
             return {
-                buttonText: 'Create project',
                 isLoading: false,
             };
         },
@@ -89,6 +89,15 @@
         computed: {
 
             /**
+             * Submit button text
+             *
+             * @return {Boolean}
+             */
+            buttonText() {
+                return this.isLoading ? 'Creating...' : 'Create project';
+            },
+
+            /**
              * Determine if the we have a file
              *
              * @return {Boolean}
@@ -110,10 +119,15 @@
              */
             onFormSubmitted() {
                 this.isLoading = true;
-                this.buttonText = 'Creating...';
 
-                let { projectName, clientId, email, viewId, trackingId, domain, privateKey } = this;
-                ProjectResource.create({ projectName, clientId, email, viewId, trackingId, domain, privateKey });
+                let { name, clientId, email, viewId, trackingId, domain, privateKey } = this;
+                ProjectResource.create({ name, clientId, email, viewId, trackingId, domain, privateKey })
+                    .then(response => {
+                        Flash.success('Project created!');
+                        this.$router.go({ name: 'projects-list' });
+                    })
+                    .catch(message => Flash.error(message.data))
+                    .then(() => this.isLoading = false);
             },
 
             /**

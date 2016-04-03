@@ -28,6 +28,12 @@ module.exports = {
         //
         // Projects
         //
+        '/projects': {
+            name: 'projects-list',
+            title: 'Projects',
+            component: require('pages/projects/index/projects_list'),
+        },
+
         '/projects/create': {
             name: 'projects-create',
             title: 'Create project',
