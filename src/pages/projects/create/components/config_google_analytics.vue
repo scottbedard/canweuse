@@ -11,7 +11,7 @@
         <div class="guide-nav">
             <a v-link="{ name: 'projects-create-step-1' }" class="btn">
                 <i class="fa fa-angle-left"></i>
-                <span>Previous</span>
+                <span>Go Back</span>
             </a>
             <a v-link="{ name: 'projects-create-form' }" class="btn next-btn">
                 <span>Next</span>

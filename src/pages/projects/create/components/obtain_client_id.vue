@@ -1,7 +1,7 @@
 <template>
     <section>
         <ol>
-            <li><a href="https://console.developers.google.com//start/api?id=analytics&amp;credential=client_key" target="_blank">Create or select a project</a> you want to cross reference with Caniuse.</li>
+            <li><a href="https://console.developers.google.com//start/api?id=analytics&amp;credential=client_key" target="_blank">Select or create the project</a> you want to cross reference with Caniuse.</li>
             <li>Open the <a href="https://console.developers.google.com/projectselector/permissions/serviceaccounts" target="_blank">Service accounts section</a>, select a project, and click <strong>Continue</strong>.
             <li>Click <strong>Create service account</strong>.</li>
             <li>Enter a <strong>Service account name</strong>, eg: "Canweuse Analytics".</li>

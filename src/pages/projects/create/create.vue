@@ -39,7 +39,7 @@
 
     .guide-nav {
         text-align: center;
-        a {
+        a, button {
             margin-top: 24px;
             @include bp(large-phone) { margin: 48px 12px }
         }
@@ -68,6 +68,8 @@
                 :client-id.sync="clientId"
                 :view-id.sync="viewId"
                 :email.sync="email"
+                :file-name.sync="fileName"
+                :private-key.sync="privateKey"
                 transition="fade"
                 transition-mode="out-in">
             </router-view>
@@ -92,13 +94,14 @@
             // synchronized props. This will allow the user to refer back to
             // the project guide without accidentally clearing their form.
             return {
-                projectName: '',
-                clientId: '',
-                email: '',
-                viewId: '',
+                projectName: 'a',
+                clientId: 'a',
+                email: 'a@b.com',
+                viewId: 'a',
                 trackingId: '',
                 domain: '',
-                privateKey: new FormData(),
+                privateKey: 'a',
+                fileName: '',
             };
         },
 
@@ -109,42 +112,6 @@
             'v-obtain-client-id': ObtainClientIdComponent,
             'v-config-google-analytics': ConfigGoogleAnalyticsComponent,
             'v-form': FormComponent,
-        },
-
-        /**
-         * @type {Object}
-         */
-        computed: {
-
-            /**
-             * Get the current guide component
-             *
-             * @return {String}
-             */
-            guideComponent() {
-                return 'v-obtain-client-id';
-            },
-        },
-
-        /**
-         * @type {Object}
-         */
-        methods: {
-            onFormSubmitted() {
-                if (typeof this.privateKey.file === 'undefined') {
-                    this.privateKey.append('file', '');
-                }
-
-                let { projectName, clientId, email, viewId, trackingId, domain, privateKey } = this;
-                ProjectResource.create({ projectName, clientId, email, viewId, trackingId, domain, privateKey });
-            },
-
-            onPrivateKeyChanged(e) {
-                e.preventDefault();
-                console.log (e.target.files);
-                this.privateKey.append('file', e.target.files[0]);
-                console.log (this.privateKey);
-            },
         },
     };
 </script>

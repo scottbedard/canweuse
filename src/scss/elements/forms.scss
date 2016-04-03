@@ -2,6 +2,7 @@
 // Forms
 //
 form {
+    @include bp-prop(margin-top, -12px, -24px); // offset field padding
 
     .row {
         display: flex;
@@ -13,8 +14,12 @@ form {
         .half { @include bp-prop(width, 100%, calc(50% - 12px)) }
 
         label + input,
-        input + label {
+        label + .v-file-upload {
             margin-top: 6px;
+        }
+
+        .field {
+            @include bp-prop(margin-top, 12px, 24px);
         }
     }
 }

@@ -15,6 +15,7 @@ a:not(.btn) {
 //
 // Inputs
 //
+.v-file-upload,
 input[type=text],
 input[type=email],
 input[type=password] {
@@ -23,7 +24,6 @@ input[type=password] {
     border-radius: 3px;
     font-size: 24px;
     font-weight: 300;
-    margin-bottom: 24px;
     outline: none;
     padding: 12px;
     width: 100%;
@@ -58,7 +58,7 @@ button {
     color: $button-color-default;
     cursor: pointer;
     display: inline-block;
-    min-width: 225px;
+    min-width: $button-min-width;
     outline: none;
     padding: 12px 32px;
     text-align: center;
@@ -76,9 +76,8 @@ button {
         color: darken($button-color-default, 80%);
     }
 
-    span.icon {
-        padding-right: 6px;
-    }
+    > i.fa:first-child { margin-right: 12px }
+    > i.fa:last-child { margin-left: 12px }
 
     // Success buttons
     &.success {
