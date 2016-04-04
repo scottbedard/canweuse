@@ -34,7 +34,7 @@ module.exports = {
             component: require('pages/projects/index/projects_list'),
         },
 
-        '/projects/:id': {
+        '/projects/:slug': {
             name: 'projects-show',
             component: require('pages/projects/show/projects_show'),
         },

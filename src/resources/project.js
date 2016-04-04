@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 module.exports = {
 
-    url: '/api/canweuse/projects',
+    url: '/api/canweuse/projects{/slug}',
 
     /**
      * Fetch projects

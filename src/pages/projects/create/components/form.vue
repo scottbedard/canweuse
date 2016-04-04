@@ -2,25 +2,13 @@
     <form @submit.prevent="onFormSubmitted" novalidate>
         <div class="row">
             <div class="half field first">
-                <label for="name">Google API Project Name</label>
-                <small>Name you assigned when you created it in Google API Console.</small>
+                <label for="name">Project Name</label>
+                <small>The name that we'll refer to this project by.</small>
                 <input id="name" type="text" v-model="name" v-el:first required>
             </div>
             <div class="half field">
-                <label for="client-id">Google API Client ID</label>
-                <small>This can be found on the project page in Google API Console.</small>
-                <input id="client-id" type="text" v-model="clientId" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="half field">
-                <label for="email">Google API Email</label>
-                <small>Email address ending with "iam.gserviceaccount.com".</small>
-                <input id="email" type="email" v-model="email" required>
-            </div>
-            <div class="half field">
                 <label for="view-id">Google Analytics View ID</label>
-                <small>You can find it on the Google Analytics Admin / View Settings page.</small>
+                <small>If you've followed the guide, this is coppied to your clipboard.</small>
                 <input id="view-id" type="text" v-model="viewId" required>
             </div>
         </div>
@@ -39,7 +27,7 @@
         <div class="row">
             <div class="full field">
                 <label for="private-key">Google Services Private Key</label>
-                <small>This key is how we'll authenticate your project with Google Analytics.</small>
+                <small>Your project will use the key you downloaded during step one to authenticate with Google Analytics.</small>
                 <v-file-upload
                     accept=".json"
                     :message="fileName"
@@ -76,8 +64,6 @@
         props: [
             'name',
             'clientId',
-            'email',
-            'viewId',
             'fileName',
             'privateKey',
             'windowDays',
@@ -146,8 +132,8 @@
             onFormSubmitted() {
                 this.isLoading = true;
 
-                let { name, clientId, email, viewId, trackingId, domain, windowDays, threshold, privateKey } = this;
-                ProjectResource.create({ name, clientId, email, viewId, trackingId, domain, windowDays, threshold, privateKey })
+                let { name, viewId, windowDays, threshold, privateKey } = this;
+                ProjectResource.create({ name, viewId, windowDays, threshold, privateKey })
                     .then(response => {
                         Flash.success('Project created!');
                         this.$router.go({ name: 'projects-list' });

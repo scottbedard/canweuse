@@ -21,7 +21,7 @@
             <tbody>
                 <tr v-for="project in projects">
                     <td>
-                        <a v-link="{ name: 'projects-show' }" class="name">{{ project.name }}</a>
+                        <a v-link="{ name: 'projects-show', params: { 'slug': project.slug } }" class="name">{{ project.name }}</a>
                         <div class="users">{{ project.users_count }} {{ project.users_count === 1 ? 'user' : 'users' }}</div>
                     </td>
                 </tr>
