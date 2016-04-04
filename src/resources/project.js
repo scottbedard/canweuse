@@ -10,8 +10,15 @@ module.exports = {
      * @param  {Object}     params
      * @return {Promise}
      */
-    get(params = {}) {
-        return Vue.resource(this.url).get(params);
+    get(params) {
+        return Vue.resource(this.url).get(params).then(response => {
+            if (typeof response.data === 'object' &&
+                typeof response.data.browser_data === 'string') {
+                response.data.browser_data = JSON.parse(response.data.browser_data);
+            }
+
+            return response;
+        });
     },
 
     /**

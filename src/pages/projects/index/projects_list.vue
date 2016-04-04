@@ -3,8 +3,13 @@
         margin: -12px 0;
         width: 100%;
 
+        th {
+            font-weight: 300;
+            &:first-of-type { text-align: left }
+        }
         td {
             padding: 12px 0;
+            &.centered { text-align: center }
         }
     }
 </style>
@@ -18,12 +23,27 @@
             </a>
         </header>
         <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IE</th>
+                    <th>Edge</th>
+                    <th>Safari</th>
+                    <th>Firefox</th>
+                    <th>Chrome</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr v-for="project in projects">
                     <td>
                         <a v-link="{ name: 'projects-show', params: { 'slug': project.slug } }" class="name">{{ project.name }}</a>
                         <div class="users">{{ project.users_count }} {{ project.users_count === 1 ? 'user' : 'users' }}</div>
                     </td>
+                    <td class="centered">{{ getSupportedVersion(project, 'Internet Explorer') }}</td>
+                    <td class="centered">{{ getSupportedVersion(project, 'Edge') }}</td>
+                    <td class="centered">{{ getSupportedVersion(project, 'Safari') }}</td>
+                    <td class="centered">{{ getSupportedVersion(project, 'Firefox') }}</td>
+                    <td class="centered">{{ getSupportedVersion(project, 'Chrome') }}</td>
                 </tr>
             </tbody>
         </table>
@@ -70,7 +90,20 @@
         /**
          * @type {Object}
          */
-        components: {
+        methods: {
+
+            /**
+             * Determine which version of the browser is currently supported
+             *
+             * @param  {String} browser
+             * @return {Number}
+             */
+            getSupportedVersion(project, browser) {
+
+                let supportThreshold = project.threshold;
+                console.log (project.browser_data)
+                return 0;
+            },
         },
     };
 </script>
