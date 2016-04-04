@@ -59,7 +59,7 @@
             </a>
             <a v-link="{ name: 'projects-create-form' }">
                 <div>3</div>
-                <span>Submit project</span>
+                <span>Create project</span>
             </a>
         </div>
         <div class="router-view">
@@ -70,6 +70,8 @@
                 :email.sync="email"
                 :file-name.sync="fileName"
                 :private-key.sync="privateKey"
+                :window-days="windowDays"
+                :threshold="threshold"
                 transition="fade"
                 transition-mode="out-in">
             </router-view>
@@ -102,6 +104,8 @@
                 domain: '',
                 privateKey: '',
                 fileName: '',
+                windowDays: 100,
+                threshold: 1,
             };
         },
 

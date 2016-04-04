@@ -3,33 +3,50 @@
         <div class="row">
             <div class="half field first">
                 <label for="name">Google API Project Name</label>
+                <small>Name you assigned when you created it in Google API Console.</small>
                 <input id="name" type="text" v-model="name" v-el:first required>
             </div>
             <div class="half field">
                 <label for="client-id">Google API Client ID</label>
+                <small>This can be found on the project page in Google API Console.</small>
                 <input id="client-id" type="text" v-model="clientId" required>
             </div>
         </div>
         <div class="row">
             <div class="half field">
-                <label for="email">Email address</label>
+                <label for="email">Google API Email</label>
+                <small>Email address ending with "iam.gserviceaccount.com".</small>
                 <input id="email" type="email" v-model="email" required>
             </div>
             <div class="half field">
-                <label for="view-id">View ID</label>
+                <label for="view-id">Google Analytics View ID</label>
+                <small>You can find it on the Google Analytics Admin / View Settings page.</small>
                 <input id="view-id" type="text" v-model="viewId" required>
             </div>
         </div>
-
+        <div class="row">
+            <div class="half field">
+                <label for="window">Window size</label>
+                <small>The number of days used to determine browser usage.</small>
+                <input type="text" v-model="windowDays">
+            </div>
+            <div class="half field">
+                <label for="support">Support threshold</label>
+                <small>The minimum browser percentage your project will support.</small>
+                <input type="text" v-model="threshold">
+            </div>
+        </div>
         <div class="row">
             <div class="full field">
-                <label for="private-key">Google Analytics key</label>
+                <label for="private-key">Google Services Private Key</label>
+                <small>This key is how we'll authenticate your project with Google Analytics.</small>
                 <v-file-upload
                     accept=".json"
                     :message="fileName"
                     :has-file="hasFile"
+                    file-icon="fa-key"
                     @file-changed="onPrivateKeyChanged"
-                    placeholder="Upload your Google Services key">
+                    placeholder="Click to upload your private key">
                 </v-file-upload>
             </div>
         </div>
@@ -56,7 +73,16 @@
         /**
          * @type {Array}
          */
-        props: ['name', 'clientId', 'email', 'viewId', 'fileName', 'privateKey'],
+        props: [
+            'name',
+            'clientId',
+            'email',
+            'viewId',
+            'fileName',
+            'privateKey',
+            'windowDays',
+            'threshold',
+        ],
 
         /**
          * @return {Object}
@@ -120,8 +146,8 @@
             onFormSubmitted() {
                 this.isLoading = true;
 
-                let { name, clientId, email, viewId, trackingId, domain, privateKey } = this;
-                ProjectResource.create({ name, clientId, email, viewId, trackingId, domain, privateKey })
+                let { name, clientId, email, viewId, trackingId, domain, windowDays, threshold, privateKey } = this;
+                ProjectResource.create({ name, clientId, email, viewId, trackingId, domain, windowDays, threshold, privateKey })
                     .then(response => {
                         Flash.success('Project created!');
                         this.$router.go({ name: 'projects-list' });

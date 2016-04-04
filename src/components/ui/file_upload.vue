@@ -16,7 +16,7 @@
             display: none;
         }
 
-        i.fa-upload {
+        i.fa {
             padding-right: 12px;
         }
 
@@ -37,7 +37,7 @@
 <template>
     <div class="v-file-upload" @click="onClicked" :class="{ 'has-file': hasFile }">
         <div>
-            <i class="fa fa-upload"></i><span>{{ message || placeholder }}</span>
+            <i class="fa {{ icon }}"></i><span>{{ message || placeholder }}</span>
             <i class="fa fa-times clear" @click.stop="onClearClicked" v-if="hasFile"></i>
         </div>
         <input
@@ -60,6 +60,8 @@
          * @type {Array}
          */
         props: {
+            uploadIcon: { default: 'fa-upload' },
+            fileIcon: { default: 'fa-check' },
             hasFile: { default: false },
             name: { default: null },
             accept: { default: null },
@@ -68,6 +70,12 @@
             required: { default: null },
             message: { default: '' },
             placeholder: { default: 'Select a file' },
+        },
+
+        computed: {
+            icon() {
+                return this.hasFile ? this.fileIcon : this.uploadIcon;
+            },
         },
 
         /**

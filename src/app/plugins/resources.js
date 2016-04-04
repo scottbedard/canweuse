@@ -1,4 +1,6 @@
-module.exports = {
+import Vue from 'vue';
+
+Vue.use({
 
     /**
      * Install plugin
@@ -19,6 +21,7 @@ module.exports = {
      */
     resources(resources) {
         let promises = [];
+
         Object.keys(resources).forEach(key => {
             let promise = resources[key];
             promise.then(response => this.$set(key, response.data));
@@ -27,4 +30,4 @@ module.exports = {
 
         return Promise.all(promises);
     },
-};
+});

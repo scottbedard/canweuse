@@ -14,12 +14,30 @@ form {
         .half { @include bp-prop(width, 100%, calc(50% - 12px)) }
 
         label + input,
-        label + .v-file-upload {
+        small + input,
+        label + .v-file-upload,
+        small + .v-file-upload {
             margin-top: 6px;
         }
 
+        small {
+            color: #999;
+            display: block;
+        }
+
         .field {
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: auto;
             @include bp-prop(margin-top, 12px, 24px);
+
+            > * {
+                flex: 1 0 auto;
+                width: 100%;
+            }
+
+            label, small { align-self: flex-start }
+            input, .v-file-upload { align-self: flex-end }
         }
     }
 }

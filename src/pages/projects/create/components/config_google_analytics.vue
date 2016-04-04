@@ -6,7 +6,7 @@
             <li>Paste the email address from your clipboard in to the <strong>Add permissions for</strong> field.</li>
             <li>Set the permissions to <strong>Read &amp; Analyse</strong>, and click <strong>Add</strong>.</li>
             <li>Click the <strong>Admin</strong> main menu tab again and select <strong>View > View Settings</strong>.</li>
-            <li>Copy the <strong>View ID</strong> to your clipboard.</li>
+            <li>Copy the <strong>View ID</strong> to your clipboard, you'll need it for the next step.</li>
         </ol>
         <div class="guide-nav">
             <a v-link="{ name: 'projects-create-step-1' }" class="btn">

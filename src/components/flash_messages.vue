@@ -66,6 +66,10 @@
     import FlashMessagesState from 'state/flash_messages';
 
     module.exports = {
+
+        /**
+         * @return {Object}
+         */
         data() {
             return {
                 messages: FlashMessagesState.state,

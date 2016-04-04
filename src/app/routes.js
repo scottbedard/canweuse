@@ -34,6 +34,11 @@ module.exports = {
             component: require('pages/projects/index/projects_list'),
         },
 
+        '/projects/:id': {
+            name: 'projects-show',
+            component: require('pages/projects/show/projects_show'),
+        },
+
         '/projects/create': {
             name: 'projects-create',
             title: 'Create project',
