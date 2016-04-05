@@ -5,11 +5,19 @@
 
         th {
             font-weight: 300;
-            &:first-of-type { text-align: left }
         }
+
         td {
             padding: 12px 0;
-            &.centered { text-align: center }
+        }
+
+        .project {
+            text-align: left;
+        }
+
+        .browser {
+            text-align: center;
+            width: 15%;
         }
     }
 </style>
@@ -25,25 +33,25 @@
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>IE</th>
-                    <th>Edge</th>
-                    <th>Safari</th>
-                    <th>Firefox</th>
-                    <th>Chrome</th>
+                    <th class="project">Name</th>
+                    <th class="browser">IE</th>
+                    <th class="browser">Edge</th>
+                    <th class="browser">Safari</th>
+                    <th class="browser">Firefox</th>
+                    <th class="browser">Chrome</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="project in projects">
-                    <td>
+                    <td class="project">
                         <a v-link="{ name: 'projects-show', params: { 'slug': project.slug } }" class="name">{{ project.name }}</a>
                         <div class="users">{{ project.users_count }} {{ project.users_count === 1 ? 'user' : 'users' }}</div>
                     </td>
-                    <td class="centered">{{ getSupportedVersion(project, 'Internet Explorer') }}</td>
-                    <td class="centered">{{ getSupportedVersion(project, 'Edge') }}</td>
-                    <td class="centered">{{ getSupportedVersion(project, 'Safari') }}</td>
-                    <td class="centered">{{ getSupportedVersion(project, 'Firefox') }}</td>
-                    <td class="centered">{{ getSupportedVersion(project, 'Chrome') }}</td>
+                    <td class="browser">{{ getLowestSupportedVersion(project, 'Internet Explorer') }}</td>
+                    <td class="browser">{{ getLowestSupportedVersion(project, 'Edge') }}</td>
+                    <td class="browser">{{ getLowestSupportedVersion(project, 'Safari') }}</td>
+                    <td class="browser">{{ getLowestSupportedVersion(project, 'Firefox') }}</td>
+                    <td class="browser">{{ getLowestSupportedVersion(project, 'Chrome') }}</td>
                 </tr>
             </tbody>
         </table>
@@ -98,11 +106,10 @@
              * @param  {String} browser
              * @return {Number}
              */
-            getSupportedVersion(project, browser) {
-
-                let supportThreshold = project.threshold;
-                console.log (project.browser_data)
-                return 0;
+            getLowestSupportedVersion(project, browser) {
+                return typeof project.supported_browsers[browser] !== 'undefined'
+                    ? project.supported_browsers[browser] + '+'
+                    : 'Not enough data';
             },
         },
     };
