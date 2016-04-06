@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import Chart from 'chart.js/chart.js';
+    // import Chart from 'chart.js/chart.js';
 
     module.exports = {
 
