@@ -3,30 +3,40 @@
     @import 'global';
 </style>
 
+<style lang="sass" scoped>
+    .root { min-height: 100% }
+</style>
+
 <template>
-    <div>
-        <v-header class="v-header"></v-header>
-        <div class="v-router">
-            <router-view transition="fade" transition-mode="out-in"></router-view>
-        </div>
-        <v-footer class="v-footer"></v-footer>
+    <div class="root">
+        <component :is="App.layout"></component>
         <v-flash-messages></v-flash-messages>
     </div>
 </template>
 
 <script>
-    import HeaderComponent from 'components/header';
-    import FooterComponent from 'components/footer';
+    import AppState from 'state/app';
+    import BlankLayout from 'components/layouts/blank/blank'
+    import DefaultLayout from 'components/layouts/default/default';
     import FlashMessagesComponent from 'components/flash_messages';
 
     module.exports = {
 
         /**
-         * @type {Object}
+         * @return {Object}     Initial state
+         */
+        data() {
+            return {
+                App: AppState.state,
+            };
+        },
+
+        /**
+         * @type {Object}       Child components
          */
         components: {
-            'v-header': HeaderComponent,
-            'v-footer': FooterComponent,
+            'default': DefaultLayout,
+            'blank': BlankLayout,
             'v-flash-messages': FlashMessagesComponent,
         },
     };

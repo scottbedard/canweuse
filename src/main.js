@@ -7,6 +7,8 @@ import VueResource from 'vue-resource';
 import { redirects, routes } from 'app/routes';
 import { config, before, after } from 'app/router';
 
+Vue.config.debug = true;
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

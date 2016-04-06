@@ -1,28 +1,53 @@
 <style lang="sass" scoped>@import 'core';
-    .auth-buttons {
-        @include bp-prop(margin, -6px, -12px)
-        @include transition(margin);
-        a.btn {  @include bp-prop(margin, 6px, 12px) }
+    .outer {
+        display: flex;
+        justify-content: center;
+        min-height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .inner {
+        align-self: center;
+        text-align: center;
+
+        @include bp('min-height: 769px') {
+            align-self: flex-start;
+            margin-top: 60px;
+        }
+
+        > * {
+            margin-bottom: 30px;
+            @include bp('min-height: 580px') { margin-bottom: 45px }
+            @include bp('min-height: 769px') { margin-bottom: 60px }
+            @include transition('font-size, margin-bottom');
+        }
+
+        h1 { @include bp-prop(font-size, 50px, 60px) }
+        h2 { @include bp-prop(font-size, 26px) }
     }
 </style>
 
 <template>
-    <main class="content margin padding">
-        <section class="splash">
-            <h1>Cross browser development just got easier.</h1>
-            <p>Explore <a href="http://caniuse.com">Caniuse</a> through the lens of <a href="https://www.google.com/analytics/">Google Analytics</a></p>
-            <div class="auth-buttons">
-                <a href="/oauth/github" @click="oauth('github')" class="btn success">
-                    <i class="fa" :class="{
-                        'fa-github': !githubIsLoading,
-                        'fa-refresh': githubIsLoading,
-                        'fa-spin': githubIsLoading,
-                    }"></i>
-                    <span>{{ githubBtnText }}</span>
-                </a>
-            </div>
-        </section>
-    </main>
+    <div class="outer">
+        <div class="inner padding">
+            <h1>Cross browser development just got easier</h1>
+            <!-- <h2>
+                Explore <a href="http://caniuse.com">Caniuse</a> through the
+                lens of <a href="https://www.google.com/analytics">Google Analytics</a>
+            </h2> -->
+            <h2>This is a work in progress, check back later.</h2>
+            <a href="/oauth/github" @click="oauth('github')" class="btn success">
+                <i class="fa" :class="{
+                    'fa-github': !githubIsLoading,
+                    'fa-refresh': githubIsLoading,
+                    'fa-spin': githubIsLoading,
+                }"></i>
+                <span>{{ githubBtnText }}</span>
+            </a>
+        </div>
+    </div>
 </template>
 
 <script>

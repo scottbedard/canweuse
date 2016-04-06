@@ -23,6 +23,7 @@ module.exports = {
             name: 'home',
             title: 'Can We Use',
             component: require('pages/home/home'),
+            layout: 'blank',
         },
 
         //

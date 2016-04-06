@@ -1,3 +1,4 @@
+import AppState from 'state/app';
 import UserState from 'state/user';
 
 //
@@ -29,6 +30,11 @@ module.exports = {
     before({ from, to, next, abort, redirect }) {
         if (to.auth === false || to.auth === true) {
             return UserState.isAuthenticated() === to.auth;
+        }
+
+        let layout = to.layout || 'default';
+        if (AppState.state.layout !== layout) {
+            AppState.setLayout(layout);
         }
 
         next();
