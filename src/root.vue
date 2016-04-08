@@ -35,8 +35,8 @@
          * @type {Object}       Child components
          */
         components: {
-            'default': DefaultLayout,
             'blank': BlankLayout,
+            'default': DefaultLayout,
             'v-flash-messages': FlashMessagesComponent,
         },
     };
