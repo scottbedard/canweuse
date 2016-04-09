@@ -1,9 +1,9 @@
 let browserColors = {
-    'Edge': '#2196F3', // blue
+    'Edge': '#3F51B5', // indigo
     'Chrome': '#F44336', // red
     'Safari': '#4CAF50', // green
     'Firefox': '#FFC107', // amber
-    'Internet Explorer': '#3F51B5', // indigo
+    'Internet Explorer': '#2196F3', // blue
 };
 
 let additionalColors = [
@@ -16,10 +16,4 @@ let additionalColors = [
     '#FFEB3B', // yellow
 ];
 
-module.exports = function (browser) {
-    if (typeof browserColors[browser] !== 'undefined') {
-        return browserColors[browser];
-    }
-
-    return additionalColors.length ? additionalColors.shift() : null;
-};
+module.exports = { browserColors };

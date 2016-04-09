@@ -8,6 +8,7 @@
     "test": "karma start build/karma.conf.js --single-run"
   },
   "dependencies": {
+    "chart.js": "^1.1.1",
     "vue": "^1.0.15"
   },
   "devDependencies": {
@@ -18,7 +19,6 @@
     "babel-preset-stage-2": "^6.0.0",
     "babel-runtime": "^5.8.0",
     "browser-sync": "^2.11.1",
-    "chart.js": "^1.1.1",
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",

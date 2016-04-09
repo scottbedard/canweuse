@@ -1,68 +1,51 @@
 <style lang="sass" scoped>@import 'core';
-    table {
-        margin: -12px 0;
-        width: 100%;
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+    }
 
-        th {
-            font-weight: 300;
-        }
+    li {
+        flex-grow: 1;
+        min-width: 100%;
+        padding: 12px;
+        text-align: center;
+        @include bp(large-phone) { min-width: 50% }
+        @include bp(tablet) { min-width: 33.3333% }
+        @include bp(desktop) { min-width: 20% }
+    }
 
-        td {
-            padding: 12px 0;
-        }
+    h3 {
+        padding-bottom: 12px;
+    }
 
-        .project {
-            text-align: left;
-        }
-
-        .browser {
-            text-align: center;
-            width: 15%;
-        }
+    canvas {
     }
 </style>
 
 <template>
     <main class="content margin padding">
-        <header>
-            <div>Projects</div>
-            <a v-link="{ name: 'projects-create' }">
-                <span>Create project</span>
-            </a>
-        </header>
-        <p v-if="projects.length === 0">
-            You haven't made any projects yet.
-        </p>
-        <table v-else>
-            <thead>
-                <tr>
-                    <th class="project">Name</th>
-                    <th class="browser">IE</th>
-                    <th class="browser">Edge</th>
-                    <th class="browser">Safari</th>
-                    <th class="browser">Firefox</th>
-                    <th class="browser">Chrome</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="project in projects">
-                    <td class="project">
-                        <a v-link="{ name: 'projects-show', params: { 'slug': project.slug } }" class="name">{{ project.name }}</a>
-                        <div class="users">{{ project.users_count }} {{ project.users_count === 1 ? 'user' : 'users' }}</div>
-                    </td>
-                    <td class="browser">{{ getLowestSupportedVersion(project, 'Internet Explorer') }}</td>
-                    <td class="browser">{{ getLowestSupportedVersion(project, 'Edge') }}</td>
-                    <td class="browser">{{ getLowestSupportedVersion(project, 'Safari') }}</td>
-                    <td class="browser">{{ getLowestSupportedVersion(project, 'Firefox') }}</td>
-                    <td class="browser">{{ getLowestSupportedVersion(project, 'Chrome') }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <ul class="projects">
+            <li v-for="project in projects">
+                <a v-link="{ name: 'projects-show' }">
+                    <h3>{{ project.name }}</h3>
+                    <v-donut-chart
+                        height="150"
+                        width="150"
+                        :chart-data="getChartData(project)">
+                    </v-donut-chart>
+                </a>
+            </li>
+        </ul>
     </main>
 </template>
 
 <script>
     import ProjectResource from 'resources/project';
+    import DonutChart from 'components/charts/donut';
 
     module.exports = {
 
@@ -73,6 +56,13 @@
             return {
                 projects: [],
             };
+        },
+
+        /**
+         * @type {Object}
+         */
+        components: {
+            'v-donut-chart': DonutChart,
         },
 
         /**
@@ -105,24 +95,20 @@
         methods: {
 
             /**
-             * Determine which version of the browser is currently supported
+             * Parse the data needed for the donut charts
              *
-             * @param  {Boolean|String} browser
-             * @return {String}
+             * @return {Object}
              */
-            getLowestSupportedVersion(project, browser) {
-                if (typeof project.supported_browsers[browser] === 'undefined') {
-                    return false;
+            getChartData(project) {
+                let data = {};
+                for (let browser of Object.keys(project.supported_browsers)) {
+                    data[browser] = 0;
+                    for (let version of project.supported_browsers[browser]) {
+                        data[browser] += version.users;
+                    }
                 }
 
-                let lowest = false;
-                project.supported_browsers[browser].forEach(({ version }) => {
-                    if (version < lowest || lowest === false) {
-                        lowest = version;
-                    }
-                });
-
-                return lowest + '+';
+                return data;
             },
         },
     };

@@ -1,0 +1,9 @@
+@mixin valign-parent() {
+    position: relative;
+}
+
+@mixin valign-child() {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
