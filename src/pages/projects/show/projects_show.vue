@@ -1,6 +1,6 @@
 <template>
     <main class="content margin padding">
-        showing it
+        <h3>This page hasn't been build yet, check back later.</h3>
     </main>
 </template>
 

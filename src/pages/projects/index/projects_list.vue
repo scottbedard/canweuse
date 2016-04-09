@@ -21,13 +21,14 @@
     h3 {
         padding-bottom: 12px;
     }
-
-    canvas {
-    }
 </style>
 
 <template>
     <main class="content margin padding">
+        <header>
+            <h1>Projects</h1>
+            <a v-link="{ name: 'projects-create' }">New Project</a>
+        </header>
         <ul class="projects">
             <li v-for="project in projects">
                 <a v-link="{ name: 'projects-show' }">
