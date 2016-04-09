@@ -8,7 +8,7 @@
             </div>
             <div class="half field">
                 <label for="view-id">Google Analytics View ID</label>
-                <small>If you've followed the guide, this is coppied to your clipboard.</small>
+                <small>If you've followed the guide, this is copied to your clipboard.</small>
                 <input id="view-id" type="text" v-model="viewId" required>
             </div>
         </div>
