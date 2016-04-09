@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onFormSubmitted" novalidate>
+    <form v-el:form @submit.prevent="onFormSubmitted" novalidate>
         <div class="row">
             <div class="half field first">
                 <label for="name">Project Name</label>
@@ -43,9 +43,9 @@
                 <i class="fa fa-angle-left"></i>
                 <span>Go Back</span>
             </a>
-            <button type="submit" class="btn success">
+            <button type="submit" class="green">
                 <i class="fa fa-refresh fa-spin" v-if="isLoading"></i>
-                {{ buttonText }}
+                <span>{{ buttonText }}</span>
             </button>
         </a>
     </form>
@@ -130,8 +130,9 @@
              * @return {void}
              */
             onFormSubmitted() {
-                this.isLoading = true;
+                if (this.isLoading) return;
 
+                this.isLoading = true;
                 let { name, viewId, windowDays, threshold, privateKey } = this;
                 ProjectResource.create({ name, viewId, windowDays, threshold, privateKey })
                     .then(response => {

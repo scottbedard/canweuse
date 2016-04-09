@@ -30,7 +30,10 @@
                 <span>Create project</span>
             </a>
         </header>
-        <table>
+        <p v-if="projects.length === 0">
+            You haven't made any projects yet.
+        </p>
+        <table v-else>
             <thead>
                 <tr>
                     <th class="project">Name</th>
@@ -90,15 +93,33 @@
              */
             data(transition) {
                 return this.$resources({
-                    projects: ProjectResource.get(),
+                    projects: ProjectResource.get().then(response => this.parse(response)),
                 });
             },
         },
+
 
         /**
          * @type {Object}
          */
         methods: {
+
+            /**
+             * Parse response data
+             *
+             * @param  {Object}     response
+             * @return {Promise}
+             */
+            parse(response) {
+                return new Promise(resolve => {
+                    response.data = response.data.map(project => {
+                        project.browser_data = JSON.parse(project.browser_data);
+                        return project;
+                    });
+
+                    resolve(response);
+                });
+            },
 
             /**
              * Determine which version of the browser is currently supported
@@ -107,9 +128,20 @@
              * @return {Number}
              */
             getLowestSupportedVersion(project, browser) {
-                return typeof project.supported_browsers[browser] !== 'undefined'
-                    ? project.supported_browsers[browser] + '+'
-                    : 'Not enough data';
+                if (typeof project.supported_browsers[browser] === 'undefined') {
+                    return 'No users';
+                }
+
+                console.log (project);
+
+                let lowest = false;
+                project.supported_browsers[browser].forEach(({ version }) => {
+                    if (version < lowest || lowest === false) {
+                        lowest = version;
+                    }
+                });
+
+                return lowest;
             },
         },
     };

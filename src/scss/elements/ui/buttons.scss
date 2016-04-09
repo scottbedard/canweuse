@@ -1,0 +1,40 @@
+//
+// Buttons
+//
+a.btn,
+button {
+    border: 1px solid;
+    appearance: none;
+    height: 54px;
+    line-height: 54px;
+    border-radius: 28px;
+    min-width: 250px;
+    text-align: center;
+    outline: none;
+
+    i.fa {
+        margin-right: 6px;
+    }
+
+    &.transparent {
+        border: 1px solid #666;
+        color: #666;
+        background-color: transparent;
+        @include transition(border-color, color);
+
+        &:hover {
+            border-color: #000;
+            color: #000;
+        }
+    }
+
+    &.green {
+        border: none;
+        color: #fff;
+        background-color: $button-color-success;
+        @include transition(background-color);
+
+        &:hover { background-color: darken($button-color-success, 5%) }
+        &:active { background-color: darken($button-color-success, 10%) }
+    }
+}

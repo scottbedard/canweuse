@@ -1,0 +1,34 @@
+//
+// Inputs
+//
+.v-file-upload,
+input[type=text],
+input[type=email],
+input[type=password] {
+    appearance: none;
+    border: 1px solid #999;
+    border-radius: 3px;
+    font-size: 24px;
+    font-weight: 300;
+    outline: none;
+    padding: 12px;
+    width: 100%;
+    @include transition('border-color, color');
+
+    &:focus { border-color: #666 }
+
+    @mixin placeholder() { color: #999 }
+    &::-webkit-input-placeholder { @include placeholder() }
+    &:-moz-placeholder { @include placeholder() }
+    &::-moz-placeholder { @include placeholder() }
+    &:-ms-input-placeholder { @include placeholder() }
+
+    &.is-invalid {
+        border-color: $error-color;
+        @mixin error-placeholder() { color: $error-color }
+        &::-webkit-input-placeholder { @include error-placeholder() }
+        &:-moz-placeholder { @include error-placeholder() }
+        &::-moz-placeholder { @include error-placeholder() }
+        &:-ms-input-placeholder { @include error-placeholder() }
+    }
+}

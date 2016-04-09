@@ -30,4 +30,15 @@ module.exports = {
     create(data) {
         return Vue.http.post(this.url, data);
     },
+
+    /**
+     * Returns the versions a project supports
+     *
+     * @param  {Object} project
+     * @param  {String} browser
+     * @return {Array}
+     */
+    getSupportedVersions(project, browser) {
+        return 'yo';
+    },
 };
