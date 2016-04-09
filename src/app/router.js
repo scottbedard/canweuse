@@ -51,5 +51,8 @@ module.exports = {
         if (typeof to.title !== 'undefined') {
             document.title = to.title;
         }
+
+        // Send the page view to Google Analytics
+        ga('send', 'pageview', to.path);
     },
 };
