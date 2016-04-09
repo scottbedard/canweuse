@@ -39,6 +39,7 @@ module.exports = {
      * @return {Array}
      */
     getSupportedVersions(project, browser) {
-        return 'yo';
+        console.log (project);
+        return [];
     },
 };

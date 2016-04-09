@@ -93,7 +93,7 @@
              */
             data(transition) {
                 return this.$resources({
-                    projects: ProjectResource.get().then(response => this.parse(response)),
+                    projects: ProjectResource.get(),
                 });
             },
         },
@@ -105,34 +105,15 @@
         methods: {
 
             /**
-             * Parse response data
-             *
-             * @param  {Object}     response
-             * @return {Promise}
-             */
-            parse(response) {
-                return new Promise(resolve => {
-                    response.data = response.data.map(project => {
-                        project.browser_data = JSON.parse(project.browser_data);
-                        return project;
-                    });
-
-                    resolve(response);
-                });
-            },
-
-            /**
              * Determine which version of the browser is currently supported
              *
-             * @param  {String} browser
-             * @return {Number}
+             * @param  {Boolean|String} browser
+             * @return {String}
              */
             getLowestSupportedVersion(project, browser) {
                 if (typeof project.supported_browsers[browser] === 'undefined') {
-                    return 'No users';
+                    return false;
                 }
-
-                console.log (project);
 
                 let lowest = false;
                 project.supported_browsers[browser].forEach(({ version }) => {
@@ -141,7 +122,7 @@
                     }
                 });
 
-                return lowest;
+                return lowest + '+';
             },
         },
     };

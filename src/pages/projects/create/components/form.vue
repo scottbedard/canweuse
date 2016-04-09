@@ -63,11 +63,12 @@
          */
         props: [
             'name',
+            'viewId',
             'clientId',
             'fileName',
+            'threshold',
             'privateKey',
             'windowDays',
-            'threshold',
         ],
 
         /**
