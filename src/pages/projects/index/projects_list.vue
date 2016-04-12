@@ -31,7 +31,7 @@
         </header>
         <ul class="projects">
             <li v-for="project in projects">
-                <a v-link="{ name: 'projects-show' }">
+                <a v-link="{ name: 'projects-show', params: { slug: project.slug }}">
                     <h3>{{ project.name }}</h3>
                     <v-donut-chart
                         height="150"
