@@ -18,6 +18,26 @@ a.btn, button {
             &:last-child { margin-left: 12px }
         }
     }
+
+    &.icon-only-mobile {
+        max-width: 65px;
+
+        i.fa {
+            margin: 0;
+        }
+
+        span {
+            display: none;
+            padding-left: 6px;
+        }
+
+        @include bp(large-phone) {
+            max-width: none;
+            span {
+                display: inline;
+            }
+        }
+    }
 }
 
 //

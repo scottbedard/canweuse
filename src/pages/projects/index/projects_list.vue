@@ -21,22 +21,13 @@
     h3 {
         padding-bottom: 12px;
     }
-
-    a.btn {
-        i { margin-right: 0 !important }
-        span {
-            display: none;
-            padding-left: 6px;
-            @include bp(large-phone) { display: inline }
-        }
-    }
 </style>
 
 <template>
     <main class="content margin padding">
         <header>
             <h1>Projects</h1>
-            <a v-link="{ name: 'projects-create' }" class="btn btn-small btn-outlined-gray">
+            <a v-link="{ name: 'projects-create' }" class="btn btn-small btn-outlined-gray icon-only-mobile">
                 <i class="fa fa-plus"></i>
                 <span>New Project</span>
             </a>

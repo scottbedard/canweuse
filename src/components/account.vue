@@ -1,17 +1,5 @@
-<style lang="sass" scoped>@import 'core';
-    i {
-        margin-right: 0 !important;
-    }
-
-    span {
-        display: none;
-        padding-left: 6px;
-        @include bp(large-phone) { display: inline }
-    }
-</style>
-
 <template>
-    <a href="/logout" class="btn btn-small btn-outlined-gray">
+    <a href="/logout" class="btn btn-small btn-outlined-gray icon-only-mobile">
         <i class="fa fa-user"></i>
         <span>{{ user.user.name }}</span>
     </a>
