@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         app: './src/main.js',
         vendors: [
+            'chart.js',
             'moment',
             'vue',
             'vue-resource',
@@ -40,7 +41,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel', // babel!eslint
+                loader: 'babel',
                 exclude: /node_modules/,
             },
             {
@@ -59,13 +60,10 @@ module.exports = {
     },
     vue: {
         loaders: {
-            js: 'babel', // babel!eslint
+            js: 'babel',
         },
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     ],
-    // eslint: {
-    //     formatter: require('eslint-friendly-formatter'),
-    // },
 };
