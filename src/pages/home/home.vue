@@ -44,7 +44,7 @@
                 :class="{
                     'btn': true,
                     'hover': githubIsLoading,
-                    'btn-outlined-black': !githubIsLoading,
+                    'btn-outlined-gray': !githubIsLoading,
                     'btn-outlined-green': githubIsLoading,
                 }">
                 <i class="fa" :class="{

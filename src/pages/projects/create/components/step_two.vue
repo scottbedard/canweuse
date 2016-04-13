@@ -9,11 +9,11 @@
             <li>Copy the <strong>View ID</strong> to your clipboard, you'll need it for the next step.</li>
         </ol>
         <div class="guide-nav">
-            <a v-link="{ name: 'projects-create-step-1' }" class="btn btn-outlined-black">
+            <a v-link="{ name: 'projects-create-step-1' }" class="btn btn-outlined-gray">
                 <i class="fa fa-angle-left"></i>
                 <span>Go Back</span>
             </a>
-            <a v-link="{ name: 'projects-create-step-3' }" class="btn btn-outlined-black">
+            <a v-link="{ name: 'projects-create-step-3' }" class="btn btn-outlined-gray">
                 <span>Next</span>
                 <i class="fa fa-angle-right"></i>
             </a>
