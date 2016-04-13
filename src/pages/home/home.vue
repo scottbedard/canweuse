@@ -38,7 +38,15 @@
                 lens of <a href="https://www.google.com/analytics">Google Analytics</a>
             </h2> -->
             <h2>This is a work in progress, excuse the mess.</h2>
-            <a href="/oauth/github" @click="oauth('github')" class="btn success">
+            <a
+                href="/oauth/github"
+                @click="oauth('github')"
+                :class="{
+                    'btn': true,
+                    'hover': githubIsLoading,
+                    'btn-outlined-black': !githubIsLoading,
+                    'btn-outlined-green': githubIsLoading,
+                }">
                 <i class="fa" :class="{
                     'fa-github': !githubIsLoading,
                     'fa-refresh': githubIsLoading,

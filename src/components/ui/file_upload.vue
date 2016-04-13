@@ -72,7 +72,16 @@
             placeholder: { default: 'Select a file' },
         },
 
+        /**
+         * @type {Object}
+         */
         computed: {
+
+            /**
+             * Returns the upload icon
+             *
+             * @return {Stirng}
+             */
             icon() {
                 return this.hasFile ? this.fileIcon : this.uploadIcon;
             },
@@ -127,7 +136,7 @@
              */
             onClicked() {
                 this.$els.input.click();
-            }
-        }
+            },
+        },
     };
 </script>

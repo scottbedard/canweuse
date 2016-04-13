@@ -1,52 +1,54 @@
 <style lang="sass" scoped>@import 'core';
     header {
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    header > div {
         align-items: center;
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
+    }
+
+    header,
+    header > div {
         @include bp-prop('height', 70px, 90px, 110px);
         @include transition('height');
     }
 
+
     a.logo {
         color: $site-font-color;
-        @include bp-prop(font-size, 22px, 32px);
+        font-weight: 300;
+        line-height: 30px;
+        margin-top: -5px; // the logo is only capital letters
+        @include bp-prop(font-size, 36px, 40px, 44px);
         @include transition('color, font-size');
 
         &:hover {
             text-decoration: none;
         }
     }
-
-    .account {
-        span.full { display: none }
-        @include bp(large-phone) {
-            span.mobile { display: none }
-            span.full { display: inline }
-        }
-    }
 </style>
 
 <template>
-    <header class="content margin padding">
-        <a class="logo" v-link="{ name: 'home' }">can we use</a>
-        <div class="account">
-            <a href="/logout">
-                <span class="mobile"><i class="fa fa-user"></i></span>
-                <span class="full">Log out</span>
-            </a>
+    <header>
+        <div class="margin padding">
+            <a class="logo" v-link="{ name: 'home' }">can we use</a>
+            <v-account></v-account>
         </div>
     </header>
 </template>
 
 <script>
-    import UserState from 'state/user';
+    import AccountComponent from 'components/account';
 
     module.exports = {
-        data() {
-            return {
-                user: UserState.state,
-            }
-        }
+
+        /**
+         * @type {Object}
+         */
+        components: {
+            'v-account': AccountComponent,
+        },
     };
 </script>

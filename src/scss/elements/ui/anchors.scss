@@ -1,7 +1,7 @@
 //
 // Links
 //
-a:not(.btn) {
+a {
     color: $link-color;
     text-decoration: none;
     @include transition(color);

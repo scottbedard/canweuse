@@ -6,7 +6,7 @@ module.exports = {
      * @type {Object}
      */
     redirects: {
-        '/projects/create': '/projects/create/obtain-client-id',
+        '/projects/create': '/projects/create/step-1',
     },
 
     /**
@@ -46,17 +46,17 @@ module.exports = {
             component: require('pages/projects/create/create'),
             auth: true,
             subRoutes: {
-                '/obtain-client-id': {
+                '/step-1': {
                     name: 'projects-create-step-1',
-                    component: require('pages/projects/create/components/obtain_client_id'),
+                    component: require('pages/projects/create/components/step_one'),
                 },
-                '/config-google-analytics': {
+                '/step-2': {
                     name: 'projects-create-step-2',
-                    component: require('pages/projects/create/components/config_google_analytics'),
+                    component: require('pages/projects/create/components/step_two'),
                 },
-                '/form': {
-                    name: 'projects-create-form',
-                    component: require('pages/projects/create/components/form'),
+                '/step-3': {
+                    name: 'projects-create-step-3',
+                    component: require('pages/projects/create/components/step_three'),
                 },
             },
         },

@@ -8,14 +8,29 @@ $breakpoints: (
     desktop: 'min-width: 1024px',
 );
 
-$button-color-default: #666;
-$button-color-success: #31ac5f; // deprecated
-$button-min-width: 225px;
+$colors: (
+    red: #F44336,
+    pink: #E91E63,
+    purple: #9C27B0,
+    indigo: #3F51B5,
+    blue: #2196F3,
+    teal: #009688,
+    green: #4CAF50,
+    yellow: #FFEB3B,
+    orange: #FF9800,
+    brown: #795548,
+    gray: #9E9E9E,
+    black: #000,
+);
 
-$error-color: #F44336;
-$info-color: #03A9F4;
-$success-color: #31ac5f;
-$warning-color: #FFC107;
+$button-color-default: #666; // deprecated
+$button-color-success: #31ac5f; // deprecated
+$button-min-width: 225px; // deprecated
+
+$error-color: #F44336; // deprecated
+$info-color: #03A9F4; // deprecated
+$success-color: #31ac5f; // deprecated
+$warning-color: #FFC107; // deprecated
 
 $link-color: #2196F3;
 

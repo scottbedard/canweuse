@@ -1,66 +1,40 @@
 <style lang="sass">@import 'core';
     .projects-create-page > .steps {
         display: flex;
-        flex-direction: column;
         justify-content: space-around;
-        margin: 24px 0;
-        @include bp(large-phone) { flex-direction: row }
+        flex-wrap: wrap;
+        flex-basis: auto;
+        @include bp-prop(margin, 12px 0, 24px 0);
+        @include bp-prop(flex-direction, column, row);
+        @include transition('margin');
 
-        a {
-            color: #ccc;
-            text-align: center;
-
-            > div {
-                align-items: center;
-                border-color: #ccc;
-                border-radius: 50px;
-                border: 1px solid;
-                display: none;
-                justify-content: center;
-                margin: 0 auto 12px auto;
-                position: relative;
-                @include bp-prop(height, 75px, 100px);
-                @include bp-prop(width, 75px, 100px);
-                @include bp(large-phone) { display: flex }
-                @include transition('border-color, height, width');
-            }
-
-            &:hover {
-                color: #666;
-                > div { border-color: #666 }
-            }
-
-            &.v-link-active {
-                color: #333;
-                > div { border-color: #333 }
-            }
+        > a {
+            @include bp-prop(width, 100%, 33.3333%);
         }
     }
 
-    .guide-nav {
+    .projects-create-page li {
+        @include bp-prop(padding-left, 6px, 12px);
+        @include transition('padding-left');
+    }
+
+    .projects-create-page .guide-nav {
         text-align: center;
+
         a, button {
-            margin-top: 24px;
-            @include bp(large-phone) { margin: 48px 12px }
+            &:first-child:last-child { @include bp-prop(margin, 24px, 36px) }
+            &:first-child:not(:last-child) { @include bp-prop(margin, 24px 12px 12px, 36px 12px) }
+            &:last-child:not(:first-child) { @include bp-prop(margin, 12px, 36px 12px) }
         }
     }
 </style>
 
 <template>
     <main class="projects-create-page content margin padding">
-        <div class="steps padding">
-            <a v-link="{ name: 'projects-create-step-1' }">
-                <div>1</div>
-                <span>Obtain a Client ID</span>
-            </a>
-            <a v-link="{ name: 'projects-create-step-2' }">
-                <div>2</div>
-                <span>Configure Google Analytics</span>
-            </a>
-            <a v-link="{ name: 'projects-create-form' }">
-                <div>3</div>
-                <span>Create project</span>
-            </a>
+        <div class="steps">
+            <v-circle step="1" text="Obtain a Client ID"></v-circle>
+            <v-circle step="2" text="Configure Google Analytics"></v-circle>
+            <v-circle step="3" text="Create project"></v-circle>
         </div>
         <div class="router-view">
             <router-view
@@ -70,8 +44,8 @@
                 :email.sync="email"
                 :file-name.sync="fileName"
                 :private-key.sync="privateKey"
-                :window-days="windowDays"
-                :threshold="threshold"
+                :window-days.sync="windowDays"
+                :threshold.sync="threshold"
                 transition="fade"
                 transition-mode="out-in">
             </router-view>
@@ -80,10 +54,7 @@
 </template>
 
 <script>
-    import ProjectResource from 'resources/project';
-    import ObtainClientIdComponent from './components/obtain_client_id';
-    import ConfigGoogleAnalyticsComponent from './components/config_google_analytics';
-    import FormComponent from './components/form';
+    import CircleComponent from './components/circle';
 
     module.exports = {
 
@@ -113,9 +84,7 @@
          * @type {Object}
          */
         components: {
-            'v-obtain-client-id': ObtainClientIdComponent,
-            'v-config-google-analytics': ConfigGoogleAnalyticsComponent,
-            'v-form': FormComponent,
+            'v-circle': CircleComponent,
         },
     };
 </script>

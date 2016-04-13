@@ -1,43 +1,91 @@
 //
-// Buttons
+// Global button styles
 //
-a.btn,
-button {
+a.btn, button {
     appearance: none;
-    border: 1px solid;
-    color: #666;
-    height: 54px;
-    line-height: 54px;
-    border-radius: 28px;
     display: inline-block;
-    min-width: 250px;
+    font-weight: 300;
     text-align: center;
     outline: none;
     text-decoration: none;
 
     i.fa {
-        margin-right: 6px;
+        &:first-child { margin-right: 6px }
+        &:last-child { margin-left: 6px }
+        @include transition('margin-left, margin-right');
+        @include bp(tablet) {
+            &:first-child { margin-right: 12px }
+            &:last-child { margin-left: 12px }
+        }
     }
+}
 
-    &.transparent {
-        border: 1px solid #666;
-        color: #666;
-        background-color: transparent;
-        @include transition(border-color, color);
+//
+// Sizes
+//
+a.btn, button {
+
+    //
+    // Default
+    //
+    border-radius: 54px;
+    height: 54px;
+    line-height: 54px;
+    min-width: 250px;
+
+    //
+    // Small
+    //
+    &.btn-small {
+        font-size: 16px;
+        height: 36px;
+        line-height: 36px;
+        min-width: auto;
+        padding: 0 24px;
+    }
+}
+
+//
+// Colored buttons
+//
+@each $name, $color in $colors {
+
+    //
+    // Background colored
+    //
+    &.btn-#{ $name } {
+        border: none;
+        background-color: $color;
+        color: #fafafa;
+        @include transition('background-color, color');
 
         &:hover {
-            border-color: #000;
-            color: #000;
+            background-color: darken($color, 5%);
+            color: #fff;
+        }
+
+        &:active {
+            background-color: darken($color, 10%);
         }
     }
 
-    &.green {
-        border: none;
-        color: #fff;
-        background-color: $button-color-success;
-        @include transition(background-color);
+    //
+    // Outlined colors
+    //
+    &.btn-outlined-#{ $name } {
+        background-color: transparent;
+        border: 1px solid #999;
+        color: #999;
+        @include transition('border-color, color');
 
-        &:hover { background-color: darken($button-color-success, 5%) }
-        &:active { background-color: darken($button-color-success, 10%) }
+        &:hover, &.hover {
+            border-color: $color;
+            color: $color;
+        }
+
+        &:active, &.active {
+            border-color: darken($color, 10%);
+            color: darken($color, 10%);
+        }
     }
 }

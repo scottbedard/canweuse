@@ -1,11 +1,21 @@
 <template>
     <main class="content margin padding">
-        <h3>This page hasn't been build yet, check back later.</h3>
+        <h1>{{ project.name }}</h1>
     </main>
 </template>
 
 <script>
+    import ProjectResource from 'resources/project';
+
     module.exports = {
 
+        /**
+         * @return {Object}
+         */
+        data() {
+            return {
+                project: [],
+            };
+        },
     };
 </script>
