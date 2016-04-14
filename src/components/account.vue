@@ -1,5 +1,5 @@
 <template>
-    <a href="/logout" class="btn btn-small btn-outlined-gray icon-only-mobile">
+    <a href="/logout" class="btn btn-small btn-outlined-black icon-only-mobile">
         <i class="fa fa-user"></i>
         <span>{{ user.user.name }}</span>
     </a>

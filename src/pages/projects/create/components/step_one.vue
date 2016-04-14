@@ -10,7 +10,7 @@
             <li>Copy the email ending with <strong>iam.gserviceaccount.com</strong> to your clipboard.</li>
         </ol>
         <div class="guide-nav">
-            <a v-link="{ name: 'projects-create-step-2' }" class="btn btn-outlined-gray">
+            <a v-link="{ name: 'projects-create-step-2' }" class="btn btn-outlined-black">
                 <span>Next</span>
                 <i class="fa fa-angle-right"></i>
             </a>

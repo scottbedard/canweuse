@@ -69,43 +69,45 @@ a.btn, button {
 // Colored buttons
 //
 @each $name, $color in $colors {
+    a.btn, button {
 
-    //
-    // Background colored
-    //
-    &.btn-#{ $name } {
-        border: none;
-        background-color: $color;
-        color: #fafafa;
-        @include transition('background-color, color');
+        //
+        // Background colored
+        //
+        &.btn-#{ $name } {
+            border: none;
+            background-color: $color;
+            color: #fafafa;
+            @include transition('background-color, color');
 
-        &:hover {
-            background-color: darken($color, 5%);
-            color: #fff;
+            &:hover {
+                background-color: darken($color, 5%);
+                color: #fff;
+            }
+
+            &:active {
+                background-color: darken($color, 10%);
+            }
         }
 
-        &:active {
-            background-color: darken($color, 10%);
-        }
-    }
+        //
+        // Outlined colors
+        //
+        &.btn-outlined-#{ $name } {
+            background-color: transparent;
+            border: 1px solid #999;
+            color: #999;
+            @include transition('border-color, color');
 
-    //
-    // Outlined colors
-    //
-    &.btn-outlined-#{ $name } {
-        background-color: transparent;
-        border: 1px solid #999;
-        color: #999;
-        @include transition('border-color, color');
+            &:hover, &.hover {
+                border-color: darken($color, 15%);
+                color: darken($color, 15%);
+            }
 
-        &:hover, &.hover {
-            border-color: $color;
-            color: $color;
-        }
-
-        &:active, &.active {
-            border-color: darken($color, 10%);
-            color: darken($color, 10%);
+            &:active, &.active {
+                border-color: darken($color, 25%);
+                color: darken($color, 25%);
+            }
         }
     }
 }

@@ -27,7 +27,7 @@
     <main class="content margin padding">
         <header>
             <h1>Projects</h1>
-            <a v-link="{ name: 'projects-create' }" class="btn btn-small btn-outlined-gray icon-only-mobile">
+            <a v-link="{ name: 'projects-create' }" class="btn btn-small btn-outlined-black icon-only-mobile">
                 <i class="fa fa-plus"></i>
                 <span>New Project</span>
             </a>
