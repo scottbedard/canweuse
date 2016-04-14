@@ -69,6 +69,7 @@ a.btn, button {
 // Colored buttons
 //
 @each $name, $color in $colors {
+    $name: unquote($name); // using unquoted css colors as keys can cause errors
     a.btn, button {
 
         //
