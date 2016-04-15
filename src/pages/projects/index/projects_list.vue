@@ -11,7 +11,11 @@
         //
         > .row {
             display: table-row;
-            &:not(:last-child) > div { padding-bottom: 12px }
+            &:not(:first-child) > div { padding-top: 12px }
+            &:not(:last-child) > div {
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 12px;
+            }
 
             > div {
                 display: table-cell;
