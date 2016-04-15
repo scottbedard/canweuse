@@ -36,10 +36,22 @@ module.exports = {
      *
      * @param  {Object} project
      * @param  {String} browser
-     * @return {Array}
+     * @return {String}
      */
-    getSupportedVersions(project, browser) {
-        console.log (project);
-        return [];
+    getLowestSupportedVersion(project, browser) {
+        let versions = project.supported_browsers[browser];
+
+        if (typeof versions === 'undefined') {
+            return 'Unknown';
+        }
+
+        let lowest = Number.POSITIVE_INFINITY;
+        versions.forEach(({ version }) => {
+            if (parseFloat(version) < lowest) {
+                lowest = version;
+            }
+        });
+
+        return lowest;
     },
 };

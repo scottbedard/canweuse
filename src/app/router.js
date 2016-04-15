@@ -28,8 +28,9 @@ module.exports = {
      * @return {void}
      */
     before({ from, to, next, abort, redirect }) {
-        if (to.auth === false || to.auth === true) {
-            return UserState.isAuthenticated() === to.auth;
+        if (typeof to.auth === "boolean" && to.auth != UserState.isAuthenticated()) {
+            abort();
+            return;
         }
 
         let layout = to.layout || 'default';

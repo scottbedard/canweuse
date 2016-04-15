@@ -1,25 +1,63 @@
 <style lang="sass" scoped>@import 'core';
-    ul {
-        display: flex;
-        flex-wrap: wrap;
+    div.projects {
+        display: table;
         list-style: none;
-        justify-content: space-around;
         margin: 0;
         padding: 0;
+        width: 100%;
+
+        //
+        // Row
+        //
+        > .row {
+            display: table-row;
+            margin: 12px 0;
+
+            > div {
+                display: table-cell;
+                vertical-align: middle;
+
+                &.chart {
+                    text-align: center;
+                    width: 50px;
+                }
+
+                &.project {
+                    @include bp-prop(padding-left, 6px, 12px);
+                    @include transition(padding-left);
+                }
+
+                &.browser {
+                    display: none;
+                    @include bp(large-phone) { &.firefox, &.chrome, &.safari { display: table-cell }}
+                    @include bp(tablet) { &.edge { display: table-cell }}
+                    @include bp(desktop) { &.ie, &.opera { display: table-cell }}
+
+                    span { @include bp-prop(display, none, inline) }
+
+                    i.fa {
+                        color: #666;
+                        @include bp-prop(display, inline, none);
+                    }
+                }
+            }
+        }
+
+        div.browser {
+            text-align: center;
+        }
+
+        //
+        // Cell
+        //
+        div {
+            display: flex;
+            align-items: center;
+        }
     }
 
     li {
-        flex-grow: 1;
-        min-width: 100%;
-        padding: 12px;
-        text-align: center;
-        @include bp(large-phone) { min-width: 50% }
-        @include bp(tablet) { min-width: 33.3333% }
-        @include bp(desktop) { min-width: 20% }
-    }
 
-    h3 {
-        padding-bottom: 12px;
     }
 </style>
 
@@ -32,18 +70,38 @@
                 <span>New Project</span>
             </a>
         </header>
-        <ul class="projects">
-            <li v-for="project in projects">
-                <a v-link="{ name: 'projects-show', params: { slug: project.slug }}">
-                    <h3>{{ project.name }}</h3>
+        <div class="projects">
+            <div class="row headers">
+                <div></div>
+                <div class="project"></div>
+                <div class="browser ie"><span>IE</span><i class="fa fa-internet-explorer"></i></div>
+                <div class="browser edge"><span>Edge</span><i class="fa fa-edge"></i></div>
+                <div class="browser firefox"><span>Firefox</span><i class="fa fa-firefox"></i></div>
+                <div class="browser chrome"><span>Chrome</span><i class="fa fa-chrome"></i></div>
+                <div class="browser safari"><span>Safari</span><i class="fa fa-safari"></i></div>
+                <div class="browser opera"><span>Opera</span><i class="fa fa-opera"></i></div>
+            </div>
+            <a
+                class="row"
+                v-for="project in projects"
+                v-link="{ name: 'projects-show', params: { slug: project.slug }}">
+                <div class="chart">
                     <v-donut-chart
-                        height="150"
-                        width="150"
+                        height="50"
+                        width="50"
+                        class="v-donut-chart"
                         :chart-data="getChartData(project)">
                     </v-donut-chart>
-                </a>
-            </li>
-        </ul>
+                </div>
+                <div class="project">{{ project.name }}</div>
+                <div class="browser ie">{{ getLowestSupportedVersion(project, 'IE') }}</div>
+                <div class="browser edge">{{ getLowestSupportedVersion(project, 'Edge') }}</div>
+                <div class="browser firefox">{{ getLowestSupportedVersion(project, 'Firefox') }}</div>
+                <div class="browser chrome">{{ getLowestSupportedVersion(project, 'Chrome') }}</div>
+                <div class="browser safari">{{ getLowestSupportedVersion(project, 'Safari') }}</div>
+                <div class="browser opera">{{ getLowestSupportedVersion(project, 'Opera') }}</div>
+            </a>
+        </div>
     </main>
 </template>
 
@@ -114,6 +172,17 @@
 
                 return data;
             },
+
+            getLowestSupportedVersion(project, browser) {
+                let version = ProjectResource.getLowestSupportedVersion(project, browser);
+
+                console.log (typeof version, version);
+                if (version !== 'Unknown') {
+                    version += '+';
+                }
+
+                return version;
+            }
         },
     };
 </script>

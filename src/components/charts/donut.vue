@@ -26,7 +26,7 @@
             let chart = new Chart(ctx).Doughnut(data, {
                 animateScale: false,
                 animateRotate: false,
-                segmentStrokeWidth: 2,
+                segmentStrokeWidth: 1,
                 segmentShowStroke: true,
                 percentageInnerCutout: 80,
                 segmentStrokeColor: "#fff",
