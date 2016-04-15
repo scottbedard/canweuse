@@ -11,7 +11,7 @@
         //
         > .row {
             display: table-row;
-            margin: 12px 0;
+            &:not(:last-child) > div { padding-bottom: 12px }
 
             > div {
                 display: table-cell;
@@ -173,14 +173,16 @@
                 return data;
             },
 
+            /**
+             * Returns the lowest supported version of a given browser
+             *
+             * @param  {Object} project
+             * @param  {String} browser
+             * @return {String}
+             */
             getLowestSupportedVersion(project, browser) {
                 let version = ProjectResource.getLowestSupportedVersion(project, browser);
-
-                console.log (typeof version, version);
-                if (version !== 'Unknown') {
-                    version += '+';
-                }
-
+                if (version !== 'Unknown') version += '+';
                 return version;
             }
         },
