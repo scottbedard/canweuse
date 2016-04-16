@@ -7,6 +7,16 @@
         width: 100%;
 
         //
+        // Links
+        //
+        a {
+            text-decoration: none;
+            &:hover {
+                background-color: #fcfcfc;
+            }
+        }
+
+        //
         // Row
         //
         > .row {
