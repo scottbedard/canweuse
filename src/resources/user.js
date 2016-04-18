@@ -36,8 +36,6 @@ module.exports = {
      * @return {Promise}
      */
     logout() {
-        return Vue.http.get('api/canweuse/auth/logout').then(response => {
-            console.log (response);
-        });
+        return Vue.http.get('api/canweuse/auth/logout');
     },
 };
