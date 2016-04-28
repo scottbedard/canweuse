@@ -17,5 +17,30 @@
                 project: [],
             };
         },
+
+                /**
+         * @type {Object}
+         */
+        route: {
+
+            /**
+             * @type {Boolean}
+             */
+            waitForData: true,
+
+            /**
+             * Fetch route data
+             *
+             * @param  {Object}     transition
+             * @return {Promise}
+             */
+            data(transition) {
+                let { slug } = this.$route.params;
+
+                return this.$resources({
+                    project: ProjectResource.get({ slug }),
+                });
+            },
+        },
     };
 </script>
