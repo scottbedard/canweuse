@@ -33,7 +33,7 @@
 <template>
     <header>
         <div class="margin padding">
-            <a class="logo" v-link="{ name: 'home' }">can we use</a>
+            <v-site-header></v-site-header>
             <v-account></v-account>
         </div>
     </header>
@@ -41,6 +41,7 @@
 
 <script>
     import AccountComponent from 'components/account';
+    import SiteHeaderComponent from 'components/site_header';
 
     module.exports = {
 
@@ -48,6 +49,7 @@
          * @type {Object}
          */
         components: {
+            'v-site-header': SiteHeaderComponent,
             'v-account': AccountComponent,
         },
     };

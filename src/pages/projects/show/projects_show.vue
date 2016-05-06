@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import AppState from 'state/app';
     import ProjectResource from 'resources/project';
 
     module.exports = {
@@ -36,6 +37,7 @@
              */
             data(transition) {
                 let { slug } = this.$route.params;
+                AppState.setSubtitle(slug);
 
                 return this.$resources({
                     project: ProjectResource.get({ slug }),

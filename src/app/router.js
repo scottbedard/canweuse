@@ -53,6 +53,10 @@ module.exports = {
             document.title = to.title;
         }
 
+        if (typeof to.subtitle !== 'undefined') {
+            AppState.setSubtitle(to.subtitle);
+        }
+
         // Send the page view to Google Analytics
         ga('send', 'pageview', to.path);
     },

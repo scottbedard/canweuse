@@ -16,7 +16,7 @@ module.exports = {
             name: null,
             updatedAt: null,
             username: null,
-        }
+        },
     },
 
     /**
